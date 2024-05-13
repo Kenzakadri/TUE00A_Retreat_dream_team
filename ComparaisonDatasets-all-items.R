@@ -118,7 +118,8 @@ data_points <- seq(400, 1413, by = 20)
 bigout <- data.frame()
 for (i in data_points) {
     print(paste(which(data_points == i), '/', length(data_points), sep = ""))
-    rownames(current) <- 1:nrow(current)
+  current <- complete_gillan[sample(1413, size = i), ]  
+  rownames(current) <- 1:nrow(current)
     output <- fa.parallel(
         mixedCor(na.omit(current), method = 'spearman', d = 1:22, p = 23:122, global = FALSE, use = 'na.or.complete.obs')$rho,
         n.iter = 20, n.obs = i
